@@ -17,7 +17,12 @@ To get the server running locally:
 
 - Express
 - Knex
-- Postgres
+- PostgreSQL
+- Okta
+- Node-schedule
+- Twit
+- Twitter-lite
+
 
 ## API Endpoints
 
@@ -96,4 +101,4 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Frontend Documentation](https://github.com/Lambda-School-Labs/social-media-strategy-fe/blob/master/README.md) for details on the frontend of our project.
+See [Frontend Documentation](https://github.com/some-labs-24/front-end) for details on the frontend of our project.
