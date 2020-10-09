@@ -6,26 +6,28 @@ const verifyTwitter = require("../middleware/verifyTwitter");
 
 // GET /api/posts
 // Returns an array of all posts belonging to logged in user
-router.get("/", (req, res) => {
+router.get("/", (req, res, next) => {
   Posts.findBy({ okta_uid: req.jwt.claims.uid })
     .then((posts) => {
       res.status(200).json(posts);
     })
     .catch((err) => {
-      res.status(500).json(err);
+      console.error(err);
+      next({ code: 500 });
     });
 });
 
 // GET /api/posts/:id
 // Returns post with :id belonging to logged in user
-router.get("/:id", (req, res) => {
+router.get("/:id", (req, res, next) => {
   const { id } = req.params;
   Posts.findBy({ id, okta_uid: req.jwt.claims.uid })
     .then(([post]) => {
       res.status(200).json(post);
     })
     .catch((err) => {
-      res.status(500).json(err);
+      console.error(err);
+      next({ code: 500 });
     });
 });
 
@@ -54,7 +56,7 @@ router.put("/:id/postnow", verifyTwitter, async (req, res, next) => {
     return res.status(200).json(postedTweet);
   } catch (err) {
     console.error(err);
-    res.status(500).json(err);
+    next({ code: 500 });
   }
 });
 
@@ -103,7 +105,8 @@ router.delete("/:id", (req, res, next) => {
       res.status(200).json({ message: "post deleted", deleted });
     })
     .catch((err) => {
-      res.status(500).json(err);
+      console.error(err);
+      next({ code: 500 });
     });
 });
 
@@ -153,6 +156,7 @@ router.put("/:id/schedule", verifyTwitter, async (req, res, next) => {
               })
               .catch((err) => {
                 console.error(err);
+                next({ code: 500 });
               });
           }
         }

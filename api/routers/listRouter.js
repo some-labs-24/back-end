@@ -5,14 +5,14 @@ const router = express.Router();
 
 // GET /api/lists
 // Returns all lists belonging to logged in user
-router.get("/", async (req, res) => {
+router.get("/", async (req, res, next) => {
   Lists.findBy({ okta_uid: req.jwt.claims.uid })
     .then((lists) => {
       res.status(200).json(lists);
     })
     .catch((err) => {
       console.error(err);
-      res.status(500).json(err);
+      next({ code: 500, message: "There was a problem getting the lists" });
     });
 });
 
@@ -27,19 +27,21 @@ router.get("/:id", async (req, res, next) => {
       res.status(200).json(list);
     })
     .catch((err) => {
+      console.error(err);
       next({ code: 500, message: "There was a problem retrieving the list" });
     });
 });
 
 // GET /api/lists/:id/posts
 // Returns posts by list id belonging to logged in user
-router.get("/:id/posts", (req, res) => {
+router.get("/:id/posts", (req, res, next) => {
   Posts.findBy({ okta_uid: req.jwt.claims.uid, list_id: req.params.id })
     .then((posts) => {
       res.status(200).json(posts);
     })
     .catch((err) => {
-      res.status(500).json(err);
+      console.error(err);
+      next({ code: 500 });
     });
 });
 
@@ -64,7 +66,8 @@ router.post("/", async (req, res, next) => {
       res.status(201).json(list);
     })
     .catch((err) => {
-      res.status(500).json(err);
+      console.error(err);
+      next({ code: 500 });
     });
 });
 
@@ -98,7 +101,7 @@ router.post("/:id/posts", async (req, res, next) => {
     })
     .catch((err) => {
       console.error(err);
-      res.status(500).json(err);
+      next({ code: 500 });
     });
 });
 
@@ -118,7 +121,8 @@ router.put("/:id", async (req, res, next) => {
       res.status(200).json(updated);
     })
     .catch((err) => {
-      res.status(500).json(err);
+      console.error(err);
+      next({ code: 500 });
     });
 });
 
@@ -138,7 +142,8 @@ router.patch("/:id", async (req, res, next) => {
       res.status(200).json(updated);
     })
     .catch((err) => {
-      res.status(500).json(err);
+      console.error(err);
+      next({ code: 500 });
     });
 });
 
@@ -157,7 +162,8 @@ router.delete("/:id", async (req, res, next) => {
       res.status(200).json({ deleted });
     })
     .catch((err) => {
-      res.status(500).json(err);
+      console.error(err);
+      next({ code: 500 });
     });
 });
 
