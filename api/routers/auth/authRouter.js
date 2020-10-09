@@ -18,8 +18,9 @@ router.get("/twitter/authorize", async (req, res, next) => {
     const redirecturl = `https://api.twitter.com/oauth/authorize?oauth_token=${oauthResponse.oauth_token}`;
 
     res.status(200).json(redirecturl);
-  } catch (error) {
-    res.status(500).json(error.message);
+  } catch (err) {
+    console.error(err);
+    next({ code: 500 });
   }
 });
 
