@@ -11,7 +11,7 @@ const client = new Twitter({
 });
 
 router.get("/twitter/authorize", async (req, res, next) => {
-  const callbackURL = `${process.env.APP_URL}/connect/twitter/callback`;
+  const callbackURL = `${req.headers.origin}/connect/twitter/callback`;
 
   try {
     const oauthResponse = await client.getRequestToken(callbackURL);
