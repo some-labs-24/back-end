@@ -1,4 +1,5 @@
-[![Maintainability](https://api.codeclimate.com/v1/badges/6a2268d17d0fcae99c56/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/social-media-strategy-be/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/6a2268d17d0fcae99c56/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/social-media-strategy-be/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/a782bd18f2d7a7072baa/maintainability)](https://codeclimate.com/github/some-labs-24/back-end/maintainability) 
+[![Test Coverage](https://api.codeclimate.com/v1/badges/a782bd18f2d7a7072baa/test_coverage)](https://codeclimate.com/github/some-labs-24/back-end/test_coverage)
 
 # API Documentation
 
@@ -102,3 +103,5 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 ## Documentation
 
 See [Frontend Documentation](https://github.com/some-labs-24/front-end) for details on the frontend of our project.
+See [Data Science Documentation](https://github.com/some-labs-24/data-scoemce) for details on the data science features of our project.
+
